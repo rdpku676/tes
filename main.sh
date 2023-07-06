@@ -5,22 +5,14 @@ sudo adduser aank --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled
 echo "ferry:ferry" | sudo chpasswd
 sudo usermod -aG sudo,adm aank
 clear
-rm -rf ngrok  ngrok.zip  ng.sh 
-wget -O ng.sh https://bit.ly/GCngr0k
-chmod +x ng.sh
-./ng.sh
-echo "======================="
-echo choose ngrok region
-echo "======================="
-echo "us - United States (Ohio)"
-echo "eu - Europe (Frankfurt)"
-echo "ap - Asia/Pacific (Singapore)"
-echo "au - Australia (Sydney)"
-echo "sa - South America (Sao Paulo)"
-echo "jp - Japan (Tokyo)"
-echo "in - India (Mumbai)"
-read -p "choose ngrok region: " CRP
-nohup ./ngrok tcp --region $CRP 3389
+rm -rf ngrok  ngrok.zip  ng.sh ngrok-stable-linux-amd64.zip 
+yum install unzip -y
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && unzip ngrok-stable-linux-amd64.zip
+clear
+echo "Katacoda Centos Windows 11 by fb.com/thuong.hai.581"
+read -p "Paste authtoken here (Copy and Right-click to paste): " CRP
+./ngrok authtoken $CRP 
+nohup ./ngrok tcp --region eu 30889 &>/dev/null &
 clear
 echo "===================================="
 echo "Install XFCE"
